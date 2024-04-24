@@ -1,0 +1,71 @@
+#%RAML 1.0
+title: Antivirus API
+version: v1
+baseUri: https://api.antivirusexample.com
+
+/types:
+  File:
+    properties:
+      name: string
+      content: string
+    example:
+      name: "example_file.txt"
+      content: "file_content_here"
+
+/scans:
+  /scan:
+    post:
+      description: Scan a file for viruses
+      body:
+        application/json:
+          type: File
+      responses:
+        200:
+          body:
+            application/json:
+              example: { status: "clean" }
+        404:
+          body:
+            application/json:
+              example: { status: "infected", details: "Virus found" }
+
+  /update:
+    put:
+      description: Update antivirus definitions
+      responses:
+        200:
+          body:
+            application/json:
+              example: { message: "Definitions updated successfully" }
+
+  /history:
+    get:
+      description: Retrieve scan history
+      responses:
+        200:
+          body:
+            application/json:
+              example: [{ fileId: "123", status: "clean" }, { fileId: "456", status: "infected" }]
+
+/quarantine:
+  /quarantine:
+    get:
+      description: Retrieve quarantined files
+      responses:
+        200:
+          body:
+            application/json:
+              example: [{ fileId: "789", name: "quarantined_file.txt" }]
+
+  /delete:
+    delete:
+      description: Delete a file from the quarantine
+      responses:
+        200:
+          body:
+            application/json:
+              example: { message: "File deleted from quarantine" }
+        404:
+          body:
+            application/json:
+              example: { error: "File not found in quarantine" }
