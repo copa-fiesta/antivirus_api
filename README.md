@@ -1,6 +1,7 @@
 # Antivirus api testing module
 
-antivirus_api_test is a Python module for testing antivirus api.
+antivirus_api_test is a Python module for testing antivirus API.
+Test endpoints and API are documented in .raml file. 
 
 ## Prerequisites
 Install used modules (pytest, requests) that are in requirements.txt file.
