@@ -6,7 +6,7 @@ headers = {"Content-Type": "application/json"}
 
 @pytest.fixture
 def base_uri():
-    return "http://localhost:5000"
+    return "api.antivirusexample.com"
 
 
 def test_scan_file_clean(base_uri):
